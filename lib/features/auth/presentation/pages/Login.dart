@@ -1,7 +1,9 @@
 import 'package:ecommerce/Widgets/ButtonWidget.dart';
 import 'package:ecommerce/Widgets/TextFieldWidget.dart';
+import 'package:ecommerce/core/AppRoutes/AppRoutesName/AppRouteName.dart';
 import 'package:ecommerce/core/Services/BotToastservice.dart';
 import 'package:ecommerce/features/auth/presentation/manager/AuthBloc.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -206,6 +208,11 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             TextSpan(
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.pushNamed(
+                                      context, AppRouteName.signUp);
+                                },
                               text: "Signup",
                               style: theme.titleLarge?.copyWith(
                                 decoration: TextDecoration.underline,

@@ -15,3 +15,12 @@ class SignInEvent extends AuthEvent {
   @override
   List<Object?> get props => [email, password];
 }
+
+class SignUpEvent extends AuthEvent {
+  UserModel user;
+
+  SignUpEvent({required this.user});
+
+  @override
+  List<Object?> get props => [user];
+}

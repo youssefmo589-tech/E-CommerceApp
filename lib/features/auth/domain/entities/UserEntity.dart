@@ -1,9 +1,13 @@
 class UserEntity {
   String name;
 
-  String userid;
+  String ? userid;
 
-  String phone;
+  String password;
 
-  UserEntity({required this.name, required this.userid, required this.phone});
+  String email;
+
+
+  UserEntity(
+      {required this.name, this.userid, required this.email, required this.password});
 }
