@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushNamedAndRemoveUntil(
         context,
-        AppRouteName.login,
+        AppRouteName.LayoutViewPage,
         (route) => false,
       );
     });
@@ -25,6 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
+      backgroundColor: AppColors.darkpurple,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16),

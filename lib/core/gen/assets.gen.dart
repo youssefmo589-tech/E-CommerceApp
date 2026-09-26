@@ -30,11 +30,15 @@ class $AssetsFontsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/Holding Mobile Mockup 01.png
+  AssetGenImage get holdingMobileMockup01 =>
+      const AssetGenImage('assets/images/Holding Mobile Mockup 01.png');
+
   /// File path: assets/images/google.png
   AssetGenImage get google => const AssetGenImage('assets/images/google.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [google];
+  List<AssetGenImage> get values => [holdingMobileMockup01, google];
 }
 
 abstract final class Assets {

@@ -4,7 +4,7 @@ import '../AppColors/AppColors.dart';
 
 class AppThemeManager {
   static final ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: AppColors.white,
+    scaffoldBackgroundColor: AppColors.whiteapp,
     textTheme: TextTheme(
         titleLarge: TextStyle(
             fontSize: 36,

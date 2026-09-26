@@ -41,6 +41,7 @@ class RepositoryImp extends RepositoryInterface {
           return true;
         }
         else {
+          await FirebaseAuth.instance.currentUser!.delete();
           return false;
         }
       }
