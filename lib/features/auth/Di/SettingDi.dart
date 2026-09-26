@@ -7,6 +7,7 @@ import 'package:get_it/get_it.dart';
 
 import '../datalayer/FirebaseDataSource/FirebaseAuth.dart';
 
+
 final getit = GetIt.instance;
 
 void setup() {
