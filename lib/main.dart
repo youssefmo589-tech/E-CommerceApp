@@ -8,6 +8,7 @@ import 'core/AppRoutes/AppRoutesConfig/AppConfig.dart';
 import 'core/Services/EasyLoadingService.dart';
 import 'core/Theme/AppThemeManager/AppThemeManager.dart';
 import 'features/auth/Di/SettingDi.dart';
+import 'features/layoutView/DI/DIlayout.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -15,6 +16,7 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   setup();
+  DIlayout();
   runApp(MyApp());
 
   configLoading();

@@ -2,8 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:ecommerce/features/layoutView/datalayer/Models/ProductModel.dart';
 import 'package:ecommerce/features/layoutView/networkService/EndPoints/EndPoints.dart';
 
+import '../../networkService/AppConstants/AppConstants.dart';
+
 class getProducts {
-  final dio = Dio();
+  final dio = Dio(BaseOptions(baseUrl: AppConstants.baseUrl));
 
   Future<List<ProductModel>> getAllProducts() async {
     final response = await dio.get(EndPoints.productsEndPoints);
@@ -22,7 +24,12 @@ class getProducts {
 
     final products = response.data['products'];
 
-    final Categories = products.map((product) => product['category']).toList();
+    final Categories = products
+        .map<String>((product) => product['category'] as String)
+        .toSet()
+        .toList();
+
+    print(Categories);
 
     return Categories;
   }

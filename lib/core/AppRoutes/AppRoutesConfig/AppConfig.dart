@@ -1,11 +1,13 @@
 import 'package:ecommerce/core/AppRoutes/AppRoutesName/AppRouteName.dart';
 import 'package:ecommerce/features/auth/presentation/pages/Login.dart';
+import 'package:ecommerce/features/layoutView/presentation/layoutviewPage/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../features/auth/presentation/manager/AuthBloc.dart';
 import '../../../features/auth/presentation/pages/signUp.dart';
 import '../../../features/layoutView/presentation/layoutviewPage/LayOutViewPage.dart';
+import '../../../features/layoutView/presentation/manager/layoutBloc.dart';
 import '../../../features/splashScreen/SplashScreen.dart';
 
 class AppConfig {
@@ -16,6 +18,10 @@ class AppConfig {
 
       case AppRouteName.LayoutViewPage:
         return MaterialPageRoute(builder: ((context) => LayoutViewPage()));
+
+      case AppRouteName.home:
+        return MaterialPageRoute(builder: ((context) =>
+            Home()));
 
 
       case AppRouteName.signUp:

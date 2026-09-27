@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../presentation/Models/UserModel.dart';
 import '../FirebaseDataSource/FireStoreService.dart';
 
-class RepositoryImp extends RepositoryInterface {
+class RepositoryImp implements RepositoryInterface {
   AuthService _authService;
 
   FireStoreService _fireStoreService;
