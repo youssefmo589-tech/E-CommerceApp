@@ -36,7 +36,7 @@ class ProductModel extends ProductEntity {
       shippingInformation: json['shippingInformation'],
       availabilityStatus: json['availabilityStatus'],
       thumbnail: json['thumbnail'],
-      images: json['images'],
+      images: List<String>.from(json['images']),
     );
   }
 

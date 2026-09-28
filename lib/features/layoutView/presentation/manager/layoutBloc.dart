@@ -29,7 +29,7 @@ class Layoutbloc extends Bloc<LayoutEvent, LayoutState> {
     emit(LayoutLoading());
 
     try {
-      final res = await _getAllProductsUsecase.call();
+      final res = await _getAllProductsUsecase.call(event.category);
 
       emit(LayoutSuccessProducts(res));
     } catch (error) {

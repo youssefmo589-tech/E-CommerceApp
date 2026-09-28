@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../core/Theme/AppColors/AppColors.dart';
+import '../features/layoutView/datalayer/Models/ProductModel.dart';
 
 class ProductContainer extends StatelessWidget {
-  const ProductContainer({super.key});
+  final ProductModel product;
+
+  ProductContainer({super.key, required this.product});
 
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
@@ -22,36 +25,38 @@ class ProductContainer extends StatelessWidget {
               Container(
                 width: double.infinity,
                 height: 90,
+                clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    image: AssetImage(
-                      "assets/images/Holding Mobile Mockup 01.png",
-                    ),
-                    fit: BoxFit.cover,
+                ),
+                child: Image.network(
+                  product.thumbnail,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => const Center(
+                    child: Icon(Icons.image_not_supported_outlined),
                   ),
                 ),
               ),
               SizedBox(height: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 6,
+                spacing: 3,
                 children: [
                   Text(
-                    "Mulberry Clutch",
+                    product.title,
                     style: theme.titleMedium?.copyWith(
                       color: AppColors.blackapp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                   Text(
-                    "Series 7",
+                    "Stock ${product.stock}",
                     style: theme.titleSmall?.copyWith(
                       color: AppColors.darkgrey,
                     ),
                   ),
                   Text(
-                    "777",
+                    "${product.price}",
                     style: theme.titleMedium?.copyWith(
                       color: AppColors.darkpurple,
                       fontWeight: FontWeight.w500,

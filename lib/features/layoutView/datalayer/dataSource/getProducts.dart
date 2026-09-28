@@ -7,13 +7,14 @@ import '../../networkService/AppConstants/AppConstants.dart';
 class getProducts {
   final dio = Dio(BaseOptions(baseUrl: AppConstants.baseUrl));
 
-  Future<List<ProductModel>> getAllProducts() async {
+  Future<List<ProductModel>> getAllProducts(String Category) async {
     final response = await dio.get(EndPoints.productsEndPoints);
 
     final products = response.data["products"];
 
     final productsList = products
-        .map((product) => ProductModel.fromJson(product))
+        .where((item) => item['category'] == Category)
+        .map<ProductModel>((product) => ProductModel.fromJson(product))
         .toList();
 
     return productsList;

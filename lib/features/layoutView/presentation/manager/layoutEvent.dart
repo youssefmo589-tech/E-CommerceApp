@@ -5,6 +5,10 @@ class LayoutEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class getProductEvent extends LayoutEvent {}
+class getProductEvent extends LayoutEvent {
+  String category;
+
+  getProductEvent(this.category);
+}
 
 class getCategoriesEvent extends LayoutEvent {}

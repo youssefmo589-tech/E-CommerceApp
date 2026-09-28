@@ -1,4 +1,5 @@
 import 'package:ecommerce/Widgets/ProductContainer.dart';
+import 'package:ecommerce/features/layoutView/datalayer/Models/ProductModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,11 +13,16 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   List<String> categories = [];
 
-  int _selectedIndexTabBar = 0;
+  List<ProductModel> products = [];
+
+  bool _initialProductsRequested = false;
+
+
+  TabController? _tabController;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +50,18 @@ class _HomeState extends State<Home> {
             }
             if (state is LayoutSuccessCategories) {
               categories = state.categories;
+              if (categories.isNotEmpty && _tabController == null) {
+                _tabController =
+                    TabController(length: categories.length, vsync: this);
+              }
+              if (!_initialProductsRequested && categories.isNotEmpty) {
+                _initialProductsRequested = true;
+                context.read<Layoutbloc>().add(
+                    getProductEvent(categories.first));
+              }
+            }
+            if (state is LayoutSuccessProducts) {
+              products = state.products;
             }
 
 
@@ -87,10 +105,9 @@ class _HomeState extends State<Home> {
                             color: AppColors.blackapp),
                       ),
                     ),
-                    DefaultTabController(
-                      length: categories.length,
 
-                      child: TabBar(
+                    TabBar(
+                      controller: _tabController,
                         dividerHeight: 0,
                         dividerColor: AppColors.darkpurple,
                         indicatorColor: AppColors.darkpurple,
@@ -109,30 +126,29 @@ class _HomeState extends State<Home> {
                         ),
                         tabAlignment: TabAlignment.start,
                         onTap: (index) {
-                          setState(() {
-                            _selectedIndexTabBar = index;
-                          });
+                          context.read<Layoutbloc>().add(
+                              getProductEvent(categories[index]));
                         },
 
                         tabs: categories.map((item) => Text(item)).toList(),
                       ),
-                    ),
+
 
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: GridView.builder(
-                        itemCount: 10,
+                        itemCount: products.length,
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          mainAxisExtent: 200,
+                          mainAxisExtent: 210,
                           mainAxisSpacing: 16,
                           crossAxisSpacing: 10,
                         ),
 
                         itemBuilder: (context, index) {
-                          return ProductContainer();
+                          return ProductContainer(product: products[index],);
                         },
                       ),
                     ),
@@ -145,5 +161,10 @@ class _HomeState extends State<Home> {
 
       ),
     );
+  }
+
+  void dispose() {
+    _tabController?.dispose();
+    super.dispose();
   }
 }

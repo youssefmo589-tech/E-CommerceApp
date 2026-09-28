@@ -6,9 +6,9 @@ class GetAllProductsUsecase {
 
   GetAllProductsUsecase(this._repository);
 
-  Future<List<ProductModel>> call() async {
+  Future<List<ProductModel>> call(String category) async {
     try {
-      return _repository.getAllProducts();
+      return _repository.getAllProducts(category);
     } catch (error) {
       print(error);
       throw error;

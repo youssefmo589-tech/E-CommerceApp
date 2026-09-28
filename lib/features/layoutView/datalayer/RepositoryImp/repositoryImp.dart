@@ -9,9 +9,9 @@ class RepositoryImpLayout implements RepositoryLayoutInterface {
   RepositoryImpLayout(this._getProducts);
 
   @override
-  Future<List<ProductModel>> getAllProducts() {
+  Future<List<ProductModel>> getAllProducts(String category) {
     try {
-      return _getProducts.getAllProducts();
+      return _getProducts.getAllProducts(category);
     } catch (error) {
       print(error);
       throw error;
